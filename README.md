@@ -21,3 +21,4 @@ Open the app in the Expo Go app on your phone or in the web browser.
 
 
 
+expo install expo-constants

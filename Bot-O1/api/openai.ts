@@ -1,12 +1,6 @@
-// api/openai.ts
-import axios from 'axios';
-import { config } from 'dotenv';
+import { OPENAI_API_KEY } from '@env'; // Importing the env variable
+import axios from 'axios'; // Importing axios
 
-// Load environment variables from .env file
-config();
-
-// Fetch the OpenAI API key from the environment variable
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_API_URL = 'https://api.openai.com/v1/completions';
 
 export const getOpenAIResponse = async (userMessage: string) => {
@@ -19,7 +13,7 @@ export const getOpenAIResponse = async (userMessage: string) => {
     const response = await axios.post(
       OPENAI_API_URL,
       {
-        model: 'text-davinci-003', // You can choose any available model
+        model: 'text-davinci-003', // Choose any available model
         prompt: userMessage,
         max_tokens: 150,
         temperature: 0.7,
@@ -31,7 +25,7 @@ export const getOpenAIResponse = async (userMessage: string) => {
         },
       }
     );
-    return response.data.choices[0].text.trim(); // Extracting the response text from the OpenAI API
+    return response.data.choices[0].text.trim(); // Extracting response text
   } catch (error) {
     console.error('Error fetching response from OpenAI:', error);
     return "Sorry, I'm having trouble thinking right now. Could you ask me something else?";
